@@ -1,0 +1,49 @@
+import processing.core.*;
+PImage startImage;
+int ButtonX = 300;
+int ButtonY = 300;
+int buttonWidth = 200;
+int buttonHeight = 50;
+
+int ButtonX2 = 300;
+int ButtonY2 = 370;
+int buttonWidth2 = 200;
+int buttonHeight2 = 50;
+
+color buttonColor;
+void setup() {
+    size(800, 600);
+    startImage = loadImage("C:/Users/User/OneDrive/桌面/gameEX/Degree of difficulty.jpg");
+    startImage.resize(width, height);
+    buttonColor = color(100, 100, 100);
+ }
+  
+ void draw() {
+      background(startImage);
+      // 製作按鈕
+      fill(buttonColor);
+      rect(ButtonX, ButtonY, buttonWidth, buttonHeight);
+      fill(255);
+      textSize(20);
+      textAlign(CENTER, CENTER);
+      text("Easy", ButtonX + buttonWidth / 2, ButtonY + buttonHeight / 2);
+      
+      fill(buttonColor);
+      rect(ButtonX2, ButtonY2, buttonWidth2, buttonHeight2);
+      fill(255);
+      textSize(20);
+      textAlign(CENTER, CENTER);
+      text("Hard", ButtonX2 + buttonWidth2 / 2, ButtonY2 + buttonHeight2 / 2);  
+      
+      if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY && mouseY <= ButtonY + buttonHeight || 
+      mouseX >= ButtonX2 && mouseX <= ButtonX2 + buttonWidth2 && mouseY >= ButtonY2 && mouseY <= ButtonY2 + buttonHeight2) {
+        cursor(HAND);  // 當鼠標在按鈕範圍內時，將鼠標設置為手形
+      } 
+      else {
+        cursor(ARROW);  // 在其他地方時，恢復鼠標為箭頭形狀
+      }
+    
+    
+ }
+  
+  

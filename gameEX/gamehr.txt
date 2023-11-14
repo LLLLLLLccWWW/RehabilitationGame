@@ -1,0 +1,232 @@
+import processing.core.*;
+//class HardGameSketch extends PApplet{
+  int score = 0; // 分數
+  int moleX, moleY; // 地鼠的座標
+  boolean moleVisible = false; // 地鼠是否可見
+  PImage moleImage;
+  PImage bgImage;
+  PImage hmImage;
+  PImage holeImage;
+  PImage sqImage;
+  //地洞
+  int numHoles=6;
+  int[] holeX= {100,300,500,100,300,500};
+  int[] holeY={150,150,150,350,350,350};
+  int holeSize=150;  //地洞大小
+  
+  int moleWidth=80;
+  int moleHeight=80;
+  
+  int ButtonX=10;
+  int ButtonY=500;
+  int buttonWidth = 100; 
+  int buttonHeight = 50; 
+  boolean buttonPressed=false;
+  boolean gamePaused=false;
+  
+  color buttoncolor;
+  
+  PFont myFont;
+  
+  //時間
+  int timer=60;
+  void setup() {
+    size(800,600,P3D);
+    moleImage=loadImage("C:/Users/User/OneDrive/桌面/gameEX/mole.png");
+    bgImage=loadImage("C:/Users/User/OneDrive/桌面/gameEX/bg.jpg");
+    hmImage=loadImage("C:/Users/User/OneDrive/桌面/gameEX/hammer.png");
+    holeImage=loadImage("C:/Users/User/OneDrive/桌面/gameEX/hole.png");
+    sqImage=loadImage("C:/Users/User/OneDrive/桌面/gameEX/sq.png");
+    // 初始化地鼠的位置（與第一個地洞一致）
+    moleX = holeX[0];
+    moleY = holeY[0];
+    frameRate(60);
+    moleImage.resize(moleWidth, moleHeight);
+    bgImage.resize(width,height);
+    hmImage.resize(150,150);
+    holeImage.resize(200,200);
+    sqImage.resize(140,100);
+    buttoncolor=color(100,100,100);
+    noStroke();  
+  }
+
+  void draw() {
+    background(bgImage);
+    //畫按鈕
+    fill(buttoncolor);
+    rect(ButtonX,ButtonY,buttonWidth,buttonHeight);
+    
+    fill(255);
+    textSize(20);
+    textAlign(CENTER,CENTER);
+    if(timer>0){
+      text("Pause",ButtonX+buttonWidth/2,ButtonY+buttonHeight/2);
+    }
+    else{
+      text("Again",ButtonX+buttonWidth/2,ButtonY+buttonHeight/2);
+    }
+    
+    //畫地洞
+    for(int i=0;i<numHoles;i++){
+       image(holeImage,holeX[i],holeY[i]);
+    }
+    if(!gamePaused && timer>0){
+      // 控制地鼠的顯示
+      if(timer<=60 && timer>=40){
+        if(frameCount %30 == 0){ // 每隔30幀顯示地鼠
+          moleVisible=true;
+          timer--;
+          // 隨機選擇一個地洞的位置作為地鼠的初始位置
+          int randomHoleIndex=int(random(numHoles));
+          moleX = holeX[randomHoleIndex]+holeSize/2-moleWidth/2+30;
+          moleY = holeY[randomHoleIndex]+holeSize/2-moleHeight/2-30;
+        }
+        
+        if (moleVisible) {
+          // 地鼠圖片
+          image(moleImage,moleX,moleY);      
+        }
+    
+    
+        // 檢測鼠標是否在按鈕範圍內
+        if(mouseX>=ButtonX && mouseX<=ButtonX+buttonWidth && mouseY>=ButtonY && mouseY<=ButtonY+buttonHeight){
+          cursor(HAND);  // 當鼠標在按鈕範圍內時，將鼠標設置為手形
+        }
+        else{
+          cursor(ARROW);  // 在其他地方時，恢復鼠標為箭頭形狀
+        }
+        if(buttonPressed == true){
+          buttoncolor=color(0,255,0);
+          gamePaused = !gamePaused;
+        }
+        else{
+          buttoncolor=color(100,100,100);
+        }
+      }
+      else if (timer<40 && timer>=20){
+        if(frameCount %20 == 0){ // 每隔20幀顯示地鼠
+          moleVisible=true;
+          timer--;
+          // 隨機選擇一個地洞的位置作為地鼠的初始位置
+          int randomHoleIndex=int(random(numHoles));
+          moleX = holeX[randomHoleIndex]+holeSize/2-moleWidth/2+30;
+          moleY = holeY[randomHoleIndex]+holeSize/2-moleHeight/2-30;
+        }
+        
+        if (moleVisible) {
+          // 地鼠圖片
+          image(moleImage,moleX,moleY);      
+        }
+    
+    
+        // 檢測鼠標是否在按鈕範圍內
+        if(mouseX>=ButtonX && mouseX<=ButtonX+buttonWidth && mouseY>=ButtonY && mouseY<=ButtonY+buttonHeight){
+          cursor(HAND);  // 當鼠標在按鈕範圍內時，將鼠標設置為手形
+        }
+        else{
+          cursor(ARROW);  // 在其他地方時，恢復鼠標為箭頭形狀
+        }
+        if(buttonPressed == true){
+          buttoncolor=color(0,255,0);
+          gamePaused = !gamePaused;
+        }
+        else{
+          buttoncolor=color(100,100,100);
+        }
+      }
+      else if (timer<20 &&timer>=0){
+        if(frameCount %15 == 0){ // 每隔15幀顯示地鼠
+          moleVisible=true;
+          timer--;
+          // 隨機選擇一個地洞的位置作為地鼠的初始位置
+          int randomHoleIndex=int(random(numHoles));
+          moleX = holeX[randomHoleIndex]+holeSize/2-moleWidth/2+30;
+          moleY = holeY[randomHoleIndex]+holeSize/2-moleHeight/2-30;
+        }
+        
+        if (moleVisible) {
+          // 地鼠圖片
+          image(moleImage,moleX,moleY);      
+        }
+    
+    
+        // 檢測鼠標是否在按鈕範圍內
+        if(mouseX>=ButtonX && mouseX<=ButtonX+buttonWidth && mouseY>=ButtonY && mouseY<=ButtonY+buttonHeight){
+          cursor(HAND);  // 當鼠標在按鈕範圍內時，將鼠標設置為手形
+        }
+        else{
+          cursor(ARROW);  // 在其他地方時，恢復鼠標為箭頭形狀
+        }
+        if(buttonPressed == true){
+          buttoncolor=color(0,255,0);
+          gamePaused = !gamePaused;
+        }
+        else{
+          buttoncolor=color(100,100,100);
+        }
+      }
+    }
+     else if(timer==0){
+      fill(0);
+      textSize(48);
+      text("Time's Up!!!!!",400,30); 
+      stroke(255,0,0);
+    }
+    //暫停狀態
+    else if(gamePaused){
+      fill(0);
+      textSize(48);
+      text("Paused!!",400,50);
+      stroke(255,0,0);
+    }
+    // 錘子
+    image(hmImage,mouseX-50,mouseY-50);
+    
+    // 顯示分數
+    fill(0);
+    image(sqImage,0,5);
+    myFont=createFont("Bold",28);
+    textFont(myFont);
+    text("score:" + score, 55, 30);
+    
+    // 顯示時間
+    fill(0);
+    image(sqImage,675,5);
+    myFont=createFont("Bold",28);
+    textFont(myFont);
+    text("time:"+timer,730,30);
+  }
+  void mouseClicked() {
+    // 檢查是否點擊到地鼠
+    if(!gamePaused && timer>0){
+       if (moleVisible && mouseX > moleX && mouseX < moleX + moleImage.width &&
+        mouseY > moleY && mouseY < moleY + moleImage.height) {
+        moleVisible = false;
+        score += 1;
+        // 重新設定地鼠位置
+        int randomHoleIndex=int(random(numHoles));
+        moleX = holeX[randomHoleIndex]-holeSize/2+moleWidth/2;
+        moleY = holeY[randomHoleIndex]-holeSize/2+moleHeight/2;
+    }
+    }
+    if(mouseX>=ButtonX && mouseX<=ButtonX+buttonWidth && mouseY>=ButtonY && mouseY<=ButtonY+buttonHeight){
+      if(timer==0){   
+        //重新開始
+        score=0;
+        timer=60;
+      }
+      else{
+       gamePaused= !gamePaused;
+      }
+        
+    }
+  }
+
+  void mousePressed() {
+    // 防止點擊事件的冒泡，以避免錘子被畫在地鼠下方
+    if (moleVisible && mouseX > moleX && mouseX < moleX + moleImage.width &&
+        mouseY > moleY && mouseY < moleY + moleImage.height) {
+      return;
+    }
+  }
+//}

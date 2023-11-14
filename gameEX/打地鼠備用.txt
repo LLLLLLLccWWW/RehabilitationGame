@@ -1,0 +1,28 @@
+// // 地鼠的耳朵
+        //fill(139, 69, 19); // 棕色
+        //ellipse(moleX + 10, moleY + 20, 10, 20);
+        //ellipse(moleX + 40, moleY + 20, 10, 20);
+        
+        //// 地鼠的眼睛
+        //fill(255); // 白色
+        //ellipse(moleX + 20, moleY + 25, 10, 10);
+        //ellipse(moleX + 30, moleY + 25, 10, 10);
+        
+        //// 地鼠的鼻子
+        //fill(139, 69, 19); // 棕色
+        //ellipse(moleX + 25, moleY + 30, 5, 5);
+        
+        //// 地鼠的身體
+        //fill(139, 69, 19); // 棕色
+        //ellipse(moleX + 25, moleY + 70, 40, 60); 
+
+        // 畫地鼠
+        //fill(139, 69, 19); // 棕色
+        //ellipse(moleX + 25, moleY + 25, 50, 50); // 地鼠圓形
+
+    //float d = dist(mouseX, mouseY, moleX + 25, moleY + 25);
+    //if (d < 25) {
+    //  return;
+    //}
+
+  //float d = dist(mouseX, mouseY, moleX + 25, moleY + 25);

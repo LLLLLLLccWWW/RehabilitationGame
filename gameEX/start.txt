@@ -1,0 +1,39 @@
+import processing.core.*;
+
+PImage startImage;
+int ButtonX = 300;
+int ButtonY = 400;
+int buttonWidth = 200;
+int buttonHeight = 50;
+boolean gameStarted = false;
+PApplet gameSketch;
+  
+color buttonColor;
+void setup() {
+    size(800, 600);
+    startImage = loadImage("C:/Users/User/OneDrive/桌面/gameEX/startImg.jpg");
+    startImage.resize(width, height);
+    buttonColor = color(100, 100, 100);
+}
+  
+void draw() {
+    background(startImage);
+    // 製作按鈕
+    fill(buttonColor);
+    rect(ButtonX, ButtonY, buttonWidth, buttonHeight);
+    fill(255);
+    textSize(20);
+    textAlign(CENTER, CENTER);
+    text("Press to start~", ButtonX + buttonWidth / 2, ButtonY + buttonHeight / 2);
+        
+    if (mouseX >= ButtonX && mouseX <= ButtonX + buttonWidth && mouseY >= ButtonY && mouseY <= ButtonY + buttonHeight) {
+        cursor(HAND);  // 當鼠標在按鈕範圍內時，將鼠標設置為手形
+    } 
+    else {
+        cursor(ARROW);  // 在其他地方時，恢復鼠標為箭頭形狀
+    }
+}
+
+
+  
+  
